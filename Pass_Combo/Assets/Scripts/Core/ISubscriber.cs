@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ISubscriber
+public interface ISubscriber
 {
-    
+    void OnNotify(string eventType, object data = null);
 }

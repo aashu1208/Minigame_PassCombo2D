@@ -1,6 +1,8 @@
 using UnityEngine;
 
-public class ISubject
+public interface ISubject
 {
-    
+    void Subscribe(ISubscriber subscriber);
+    void UnSubscribe(ISubscriber subscriber);
+    void Notify(string eventType, object data = null);
 }

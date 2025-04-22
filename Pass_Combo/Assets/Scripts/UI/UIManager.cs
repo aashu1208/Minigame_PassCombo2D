@@ -1,12 +1,19 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour, ISubscriber
 {
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI comboText;
+
+    public TextMeshProUGUI timerText;
+
+    public GameObject gameOverPanel;
+    public TextMeshProUGUI finalScoreText;
+    public TextMeshProUGUI finalComboText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -47,6 +54,25 @@ public class UIManager : MonoBehaviour, ISubscriber
                 comboText.text = "";
         }
 
+        if(eventType == "TIMER_UPDATED")
+        {
+            int timeLeft = (int)data;
+            timerText.text = "Time: "+timeLeft+ "s";
+        }
 
+        if(eventType == "GAME_OVER")
+        {
+
+            gameOverPanel.SetActive(true);
+            finalScoreText.text = "Final Score: "+scoreText.text;
+            finalComboText.text = "Final Combo: "+comboText.text;
+        }
+
+
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

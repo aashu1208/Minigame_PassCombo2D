@@ -7,7 +7,7 @@ public class HighlightManager : MonoBehaviour
     public List<GameObject> teammates; // Assign teammates in Inspector
     public float highlightDuration = 1.0f;
 
-    private GameObject currentHighlighted;
+    public static GameObject currentHighlighted;
 
     private void Start()
     {

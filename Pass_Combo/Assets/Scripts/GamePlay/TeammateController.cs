@@ -62,4 +62,19 @@ public class TeammateController : MonoBehaviour, ISubscriber
             transform.localScale = originalScale;
         }
     }
+
+    private void OnMouseDown()
+    {
+        Debug.Log($"{gameObject.name} clicked.");
+
+        if(HighlightManager.currentHighlighted == this.gameObject)
+        {
+            Debug.Log("Correct Pass.");
+            GameManager.Instance.PlayerPassed(this.gameObject);
+        }
+        else
+        {
+            Debug.Log("Not the highlighted teammate.");
+        }
+    }
 }

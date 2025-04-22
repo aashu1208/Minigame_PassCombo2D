@@ -1,16 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HighlightManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public List<GameObject> teammates; // Assign teammates in Inspector
+    public float highlightDuration = 1.0f;
+
+    private GameObject currentHighlighted;
+
+    private void Start()
     {
-        
+        StartCoroutine(HighlightLoop());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator HighlightLoop()
     {
-        
+        while (true)
+        {
+            Debug.Log("Highlight loop running");
+
+            GameManager.Instance.ResetHighlights();
+
+            int index = Random.Range(0, teammates.Count);
+            currentHighlighted = teammates[index];
+
+            GameManager.Instance.HighlightTeammate(currentHighlighted);
+
+            yield return new WaitForSeconds(highlightDuration);
+
+            GameManager.Instance.ResetHighlights();
+        }
     }
 }

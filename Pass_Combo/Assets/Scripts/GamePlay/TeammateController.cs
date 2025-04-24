@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class TeammateController : MonoBehaviour, ISubscriber
+public class TeammateController : MonoBehaviour, ISubscriber, IPointerClickHandler
 {
     private SpriteRenderer sr;
     private Vector3 originalScale;
@@ -75,6 +76,20 @@ public class TeammateController : MonoBehaviour, ISubscriber
         else
         {
             Debug.Log("Not the highlighted teammate.");
+            GameManager.Instance.Notify("MISS");
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(HighlightManager.currentHighlighted == this.gameObject)
+        {
+            GameManager.Instance.PlayerPassed(this.gameObject);
+        }
+
+        else
+        {
+            GameManager.Instance.Notify("MISS");
         }
     }
 }

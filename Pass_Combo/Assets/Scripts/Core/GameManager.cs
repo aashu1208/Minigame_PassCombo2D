@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.Scripting;
 
 public class GameManager : MonoBehaviour
 {
     private List<ISubscriber> _subscribers = new List<ISubscriber>();
     public static GameManager Instance;
+    public GameObject askingPanel;
 
     private void Awake()
     {
@@ -79,4 +81,32 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public void MM()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void Asking_Panel()
+    {
+        askingPanel.SetActive(true);
+    }
+
+    public void Close_Ask_Panel()
+    {
+        askingPanel.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    public DifficultyLevel currentDifficulty = DifficultyLevel.Medium;
+}
+
+[System.Serializable]
+public enum DifficultyLevel
+{
+    Easy,
+    Medium,
+    Hard
 }

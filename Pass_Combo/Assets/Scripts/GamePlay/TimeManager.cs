@@ -11,6 +11,7 @@ public class TimeManager : MonoBehaviour
     {
         currentTime = gameDuration;
         isRunning = true;
+        GameManager.Instance.StartGame(); // Notify game start
     }
 
     // Update is called once per frame

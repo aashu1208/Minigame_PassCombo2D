@@ -13,6 +13,8 @@ public class HighlightManager : MonoBehaviour, ISubscriber
     {
         GameManager.Instance.Subscribe(this);
         StartCoroutine(HighlightLoop());
+
+        GameManager.Instance.Subscribe(this);
     }
 
     private void OnDestroy()
@@ -48,4 +50,23 @@ public class HighlightManager : MonoBehaviour, ISubscriber
             GameManager.Instance.ResetHighlights(); // Reset highlights when the game starts
         }
     }
+
+    private void SetDifficultyTiming()
+    {
+
+        switch(GameManager.Instance.currentDifficulty)
+        {
+            case DifficultyLevel.Easy:
+                highlightDuration = 1.5f;
+                break;
+            case DifficultyLevel.Medium:
+                highlightDuration = 1.0f;
+                break;
+            case DifficultyLevel.Hard:
+                highlightDuration = 0.6f;
+                break;
+        }
+    }
+
+
 }

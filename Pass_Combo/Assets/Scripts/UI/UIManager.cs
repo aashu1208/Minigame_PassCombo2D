@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour, ISubscriber
         if(eventType == "SCORE_UPDATED")
         {
             int newScore = (int)data;
-            scoreText.text = "Score: "+newScore.ToString();
+            scoreText.text = ""+newScore.ToString();
         }
 
         if(eventType == "COMBO_UPDATED")
@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour, ISubscriber
             int newCombo = (int)data;
 
             if(newCombo > 1)
-                comboText.text = "Combo: "+newCombo.ToString();
+                comboText.text = ""+newCombo.ToString();
 
             else
                 comboText.text = "";
@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour, ISubscriber
         if(eventType == "TIMER_UPDATED")
         {
             int timeLeft = (int)data;
-            timerText.text = "Time: "+timeLeft+ "s";
+            timerText.text = "Timer: "+timeLeft+ "s";
         }
 
         if(eventType == "GAME_OVER")

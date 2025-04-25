@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private List<ISubscriber> _subscribers = new List<ISubscriber>();
     public static GameManager Instance;
     public GameObject askingPanel;
+    public Difficulty currentDifficulty;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+        currentDifficulty = GameSettings.Instance.selectedDifficulty;
 
     }
 
@@ -84,7 +86,7 @@ public class GameManager : MonoBehaviour
 
     public void MM()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MenuScene");
     }
     public void Asking_Panel()
     {
@@ -100,13 +102,7 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
-    public DifficultyLevel currentDifficulty = DifficultyLevel.Medium;
+    
 }
 
-[System.Serializable]
-public enum DifficultyLevel
-{
-    Easy,
-    Medium,
-    Hard
-}
+

@@ -25,8 +25,29 @@ public class ScoreManager : MonoBehaviour, ISubscriber
         if(eventType == "PlayerPassed")
         {
             combo++;
-            int points = 1+Mathf.FloorToInt(combo * 0.5f);
-            score += points;
+            int pointsToAdd = 1; // Base point
+
+
+            Difficulty difficulty = GameManager.Instance.currentDifficulty;
+
+            if(difficulty == Difficulty.Medium && combo == 3)
+            {
+                pointsToAdd += 2; // 2 points for 3 combo
+                Debug.Log("Combo bonus: 2 points for 3 combo");
+            }
+
+            else if(difficulty == Difficulty.Hard && combo == 5)
+            {
+                pointsToAdd += 3; // 3 points for 5 combo
+                Debug.Log("Combo bonus: 3 points for 5 combo");
+            }
+            else if(difficulty == Difficulty.Hard && combo == 10)
+            {
+                pointsToAdd += 5; // 5 points for 10 combo
+                Debug.Log("Combo bonus: 5 points for 10 combo");
+            }
+
+            score += pointsToAdd;
             Debug.Log("Score: " +score+ " Combo: "+combo);
 
             // Broadcast Score and combo to UI manager
@@ -37,6 +58,14 @@ public class ScoreManager : MonoBehaviour, ISubscriber
         else if(eventType == "MISS")
         {
             combo = 0;
+
+            // Apply penalty only in Hard mode
+            if(GameManager.Instance.currentDifficulty == Difficulty.Hard)
+            {
+                score = Mathf.Max(0, score - 1); // Prevent negative score
+                Debug.Log("Penalty applied: -1 point for missing in Hard mode. Score: " + score);
+                GameManager.Instance.Notify("SCORE_UPDATED", score);
+            }
             GameManager.Instance.Notify("COMBO_UPDATED", combo);
         }
     }

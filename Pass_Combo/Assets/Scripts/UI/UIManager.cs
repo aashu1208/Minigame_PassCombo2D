@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour, ISubscriber
                 comboText.text = ""+newCombo.ToString();
 
             else
-                comboText.text = "";
+                comboText.text = ""+newCombo.ToString();
         }
 
         if(eventType == "TIMER_UPDATED")

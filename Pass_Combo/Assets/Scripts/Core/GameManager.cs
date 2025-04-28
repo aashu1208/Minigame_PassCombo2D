@@ -72,6 +72,13 @@ public class GameManager : MonoBehaviour
     {
         Notify("RESET_HIGHLIGHTS");
     }
+
+
+    public void Show_Trigger_Effect()
+    {
+
+        Notify("SHOW_TRIGGER_EFFECT");
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

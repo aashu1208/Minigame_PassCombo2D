@@ -47,6 +47,11 @@ public class ScoreManager : MonoBehaviour, ISubscriber
                 Debug.Log("Combo bonus: 5 points for 10 combo");
             }
 
+            else if(combo == 5)
+            {
+                GameManager.Instance.Show_Trigger_Effect();
+            }
+
             score += pointsToAdd;
             Debug.Log("Score: " +score+ " Combo: "+combo);
 

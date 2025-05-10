@@ -6,7 +6,7 @@ using UnityEngine.Scripting;
 
 public class GameManager : MonoBehaviour
 {
-    private List<ISubscriber> _subscribers = new List<ISubscriber>();
+    public List<ISubscriber> _subscribers = new List<ISubscriber>();
     public static GameManager Instance;
     public GameObject askingPanel;
     public Difficulty currentDifficulty;
@@ -79,17 +79,7 @@ public class GameManager : MonoBehaviour
 
         Notify("SHOW_TRIGGER_EFFECT");
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public void MM()
     {

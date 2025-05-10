@@ -66,10 +66,4 @@ public class AudioManager : MonoBehaviour, ISubscriber
     {
         Play(buttonClick);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
